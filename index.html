@@ -1,53 +1,71 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Головна сторінка</title>
   <style>
-  
+    /* CSS стилі */
     body {
-  background-image: url('https://assets.awwwards.com/awards/submissions/2023/10/651ec42e3a118725074415.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #000000;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  }
-  .page-title {
-  text-align: center;
-  font-size: 32px;
-  color: #FFFFFF;
-  background-color: #000000;
-  padding: 10px;
-  }
+      background-image: url('https://assets.awwwards.com/awards/submissions/2023/10/651ec42e3a118725074415.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: #000000;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .page-title {
+      text-align: center;
+      font-size: 32px;
+      color: #FFFFFF;
+      background-color: #000000;
+      padding: 10px;
+    }
     .content-container {
-  text-align: center;
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 20px;
-  }
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 20px;
+    }
     .info-text {
-  font-size: 20px;
-  color: #000000;
-  }
+      font-size: 20px;
+      color: #000000;
+    }
+    .info-button {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      font-size: 24px;
+    }
   </style>
 </head>
 <body>
   <h1 class="page-title">Головна сторінка</h1>
   <div style="text-align: center;">
-  <a href="about.html"><button class="my-button" style="font-size: 24px;">Проєкти</button></a>
-  <a href="asd.html"><button class="my-button" style="font-size: 24px;">Резюме</button></a>
-  <a href="dosvid.html"><button class="my-button" style="font-size: 24px;">Досвід в навчанні та роботі</button></a>
-  <a href="bio.html"><button class="my-button" style="font-size: 24px;">Біографія</button></a>
-  <a href="poslyg.html"><button class="my-button" style="font-size: 24px;">Послуги</button></a>
-  <a href="contact.html"><button class="my-button" style="font-size: 24px;">Контакти</button></a>
+    <a href="about.html"><button class="my-button" style="font-size: 24px;">Проєкти</button></a>
+    <a href="asd.html"><button class="my-button" style="font-size: 24px;">Резюме</button></a>
+    <a href="dosvid.html"><button class="my-button" style="font-size: 24px;">Досвід в навчанні та роботі</button></a>
+    <a href="bio.html"><button class="my-button" style="font-size: 24px;">Біографія</button></a>
+    <a href="poslyg.html"><button class="my-button" style="font-size: 24px;">Послуги</button></a>
+    <a href="contact.html"><button class="my-button" style="font-size: 24px;">Контакти</button></a>
   </div>
   <div class="content-container">
-  <p class="info-text">Корисна інформація про створення сайту на тему Portfolio</p>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/0YFrGy_mzjY?si=KLcsNCat0GI74twA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <p class="info-text">Корисна інформація про створення сайту на тему Portfolio</p>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/0YFrGy_mzjY?si=KLcsNCat0GI74twA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
+
+  <button class="info-button">Інформація про сайт</button>
+
+  <script>
+    // Функція для виведення інформації про сайт
+    function showSiteInfo() {
+      alert('Це сайт-портфоліо, який демонструє приклади моєї роботи та навичок.');
+    }
+
+    // Отримуємо кнопку за класом "info-button" та призначаємо функцію showSiteInfo() на подію click
+    var infoButton = document.querySelector('.info-button');
+    infoButton.addEventListener('click', showSiteInfo);
+  </script>
 </body>
 </html>
