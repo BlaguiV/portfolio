@@ -5,67 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Головна сторінка</title>
   <style>
-    /* CSS стилі */
-    body {
-      background-image: url('https://assets.awwwards.com/awards/submissions/2023/10/651ec42e3a118725074415.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      color: #000000;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    .page-title {
-      text-align: center;
-      font-size: 32px;
-      color: #FFFFFF;
-      background-color: #000000;
-      padding: 10px;
-    }
-    .content-container {
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 20px;
-    }
-    .info-text {
-      font-size: 20px;
-      color: #000000;
-    }
-    .info-button {
-      position: fixed;
-      bottom: 10px;
-      left: 10px;
-      font-size: 24px;
-    }
+  body {
+    background-image: url('https://assets.awwwards.com/awards/submissions/2023/10/651ec42e3a118725074415.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .page-title {
+    text-align: center;
+    font-size: 32px;
+    color: #FFFFFF;
+    background-color: #000000;
+    padding: 10px;
+  }
+  .content-container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+  }
+  .info-text {
+    font-size: 20px;
+    color: #000000;
+  }
+  .info-button {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    font-size: 24px;
+  }
+
+  .date-text {
+    font-weight: bold;
+  }
+  .date-numbers {
+    font-weight: bold;
+  }
+
+  .my-button {
+    font-size: 24px;
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+</style>
   </style>
 </head>
 <body>
   <h1 class="page-title">Головна сторінка</h1>
   <div style="text-align: center;">
-    <a href="about.html"><button class="my-button" style="font-size: 24px;">Проєкти</button></a>
-    <a href="asd.html"><button class="my-button" style="font-size: 24px;">Резюме</button></a>
-    <a href="dosvid.html"><button class="my-button" style="font-size: 24px;">Досвід в навчанні та роботі</button></a>
-    <a href="bio.html"><button class="my-button" style="font-size: 24px;">Біографія</button></a>
-    <a href="poslyg.html"><button class="my-button" style="font-size: 24px;">Послуги</button></a>
-    <a href="contact.html"><button class="my-button" style="font-size: 24px;">Контакти</button></a>
+    <a href="about.html" class="my-button">Проєкти</a>
+    <a href="asd.html" class="my-button">Резюме</a>
+    <a href="dosvid.html" class="my-button">Досвід в навчанні та роботі</a>
+    <a href="bio.html" class="my-button">Біографія</a>
+    <a href="poslyg.html" class="my-button">Послуги</a>
+    <a href="contact.html" class="my-button">Контакти</a>
+
+    <form action="reviews.html" method="get">
+      <button type="submit" class="my-button">Відгуки</button>
+    </form>
   </div>
   <div class="content-container">
     <p class="info-text">Корисна інформація про створення сайту на тему Portfolio</p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0YFrGy_mzjY?si=KLcsNCat0GI74twA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+    <p class="date-text">Дата: <span class="date-numbers"></span></p>
   </div>
 
   <button class="info-button">Інформація про сайт</button>
 
   <script>
-    // Функція для виведення інформації про сайт
     function showSiteInfo() {
       alert('Це сайт-портфоліо, який демонструє приклади моєї роботи та навичок.');
     }
 
-    // Отримуємо кнопку за класом "info-button" та призначаємо функцію showSiteInfo() на подію click
     var infoButton = document.querySelector('.info-button');
     infoButton.addEventListener('click', showSiteInfo);
+
+
+    var currentDate = new Date();
+    var dateNumbers = document.querySelector('.date-numbers');
+    dateNumbers.textContent = currentDate.toLocaleDateString();
   </script>
 </body>
 </html>
