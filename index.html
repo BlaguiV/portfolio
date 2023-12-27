@@ -56,10 +56,17 @@
     cursor: pointer;
     text-decoration: none;
   }
+  .ajax-content {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+    }
 </style>
   </style>
 </head>
 <body>
+
   <h1 class="page-title">Головна сторінка</h1>
   <div style="text-align: center;">
     <a href="about.html" class="my-button">Проєкти</a>
@@ -76,8 +83,12 @@
   <div class="content-container">
     <p class="info-text">Корисна інформація про створення сайту на тему Portfolio</p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0YFrGy_mzjY?si=KLcsNCat0GI74twA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-
+<div class="content-container">
+   <h1>Завантаження даних AJAX</h1>
+<div class="ajax-content">
+</div>
+<button onclick="loadData()">Завантажити дані</button>
+</div>
     <p class="date-text">Дата: <span class="date-numbers"></span></p>
   </div>
 
@@ -95,6 +106,56 @@
     var currentDate = new Date();
     var dateNumbers = document.querySelector('.date-numbers');
     dateNumbers.textContent = currentDate.toLocaleDateString();
+  </script>
+  <script>
+    // Функція для виконання AJAX-запиту
+    function fetchData() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var responseData = xhr.responseText;
+            updateContent(responseData); // Функція для оновлення вмісту на сторінці
+          } else {
+            console.error('Помилка завантаження даних: ' + xhr.status);
+          }
+        }
+      };
+      xhr.open('GET', 'шлях_до_вашого_файлу_чи_серверної_сторінки', true);
+      xhr.send();
+    }
+
+    // Функція для оновлення вмісту на сторінці
+    function updateContent(data) {
+      var ajaxContent = document.querySelector('.ajax-content');
+      ajaxContent.innerHTML = data;
+    }
+
+    // Виклик функції завантаження даних при потрібному події, наприклад, при завантаженні сторінки
+    window.addEventListener('load', fetchData);
+  </script>
+  <script>
+    function loadData() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var responseData = JSON.parse(xhr.responseText);
+            updateContent(responseData); // Оновлення вмісту на сторінці
+          } else {
+            console.error('Помилка завантаження даних: ' + xhr.status);
+          }
+        }
+      };
+      xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/2', true); // Зразок URL для демонстрації
+      xhr.send();
+    }
+
+    function updateContent(data) {
+      var ajaxContent = document.querySelector('.ajax-content');
+      // Якщо ви хочете відобразити JSON-об'єкт, потрібно виконати JSON.stringify()
+      ajaxContent.textContent = JSON.stringify(data, null, 2);
+    }
   </script>
 </body>
 </html>
