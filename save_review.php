@@ -1,15 +1,17 @@
 <?php
+  // Підключення до бази даних та збереження відгуку
+  $connection = mysqli_connect('localhost', 'username', 'password', 'database_name');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'] ?? '';
-    $message = $_POST['message'] ?? '';
+  // Перевірка, чи були відправлені дані форми
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $review = $_POST['message'];
 
-    if ($name && $message) {
-        $reviewData = $name . '|' . $message . PHP_EOL;
-        file_put_contents('reviews.txt', $reviewData, FILE_APPEND | LOCK_EX);
-    }
-}
+    // Додавання нового відгуку до бази даних
+    $query = "INSERT INTO reviews (name, message) VALUES ('$name', '$review')";
+    mysqli_query($connection, $query);
+  }
 
-header("Location: reviews.html");
-exit;
+  // Перенаправлення назад на сторінку відгуків
+  header("Location: reviews.php");
 ?>
