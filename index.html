@@ -76,24 +76,19 @@
     <a href="poslyg.html" class="my-button">Послуги</a>
     <a href="contact.html" class="my-button">Контакти</a>
 
-    <form action="reviews.html" method="get">
+    <form action="reviews.php" method="get">
       <button type="submit" class="my-button">Відгуки</button>
     </form>
   </div>
   <div class="content-container">
     <p class="info-text">Корисна інформація про створення сайту на тему Portfolio</p>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/0YFrGy_mzjY?si=KLcsNCat0GI74twA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-<div class="content-container">
-   <h1>Завантаження даних AJAX</h1>
-<div class="ajax-content">
-</div>
-<button onclick="loadData()">Завантажити дані</button>
-</div>
     <p class="date-text">Дата: <span class="date-numbers"></span></p>
   </div>
+  <div id="reviewsContainer" class="ajax-content"></div>
 
   <button class="info-button">Інформація про сайт</button>
-
+<button id="loadReviewsBtn" class="my-button">Завантажити відгуки</button>
   <script>
     function showSiteInfo() {
       alert('Це сайт-портфоліо, який демонструє приклади моєї роботи та навичок.');
@@ -108,54 +103,21 @@
     dateNumbers.textContent = currentDate.toLocaleDateString();
   </script>
   <script>
-    // Функція для виконання AJAX-запиту
-    function fetchData() {
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            var responseData = xhr.responseText;
-            updateContent(responseData); // Функція для оновлення вмісту на сторінці
-          } else {
-            console.error('Помилка завантаження даних: ' + xhr.status);
-          }
+  	document.getElementById('loadReviewsBtn').addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var reviewsContainer = document.getElementById('reviewsContainer');
+            reviewsContainer.innerHTML = this.responseText;
         }
-      };
-      xhr.open('GET', 'шлях_до_вашого_файлу_чи_серверної_сторінки', true);
-      xhr.send();
-    }
+    };
 
-    // Функція для оновлення вмісту на сторінці
-    function updateContent(data) {
-      var ajaxContent = document.querySelector('.ajax-content');
-      ajaxContent.innerHTML = data;
-    }
+    xhr.open('GET', 'reviews.php', true);
+    xhr.send();
+});
 
-    // Виклик функції завантаження даних при потрібному події, наприклад, при завантаженні сторінки
-    window.addEventListener('load', fetchData);
   </script>
-  <script>
-    function loadData() {
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            var responseData = JSON.parse(xhr.responseText);
-            updateContent(responseData); // Оновлення вмісту на сторінці
-          } else {
-            console.error('Помилка завантаження даних: ' + xhr.status);
-          }
-        }
-      };
-      xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/2', true); // Зразок URL для демонстрації
-      xhr.send();
-    }
-
-    function updateContent(data) {
-      var ajaxContent = document.querySelector('.ajax-content');
-      // Якщо ви хочете відобразити JSON-об'єкт, потрібно виконати JSON.stringify()
-      ajaxContent.textContent = JSON.stringify(data, null, 2);
-    }
-  </script>
+  
 </body>
 </html>
